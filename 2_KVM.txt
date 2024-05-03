@@ -1,0 +1,20 @@
+sudo dmesg | grep kvm
+apt update
+sudo apt install qemu-kvm libvirt-daemon-system virt-manager
+sudo adduser $USER libvirt
+sudo systemctl enable libvirtd.service --now
+
+Steps:-
+1. Check whether virtualization is enabled. To check the status run following command:
+sudo dmesg | grep kvm
+If there is no output, then virtualization is enabled otherwise the feature must be enabled in the bios.
+2. Install the necessary packages
+apt update
+sudo apt install qemu-kvm libvirt-daemon-system virt-manager
+3. Add current user to the libvirt group
+sudo adduser $USER libvirt
+4. Enable and start the libvirt service
+sudo systemctl enable libvirtd.service --now
+5. Log out of the desktop session and relogin.
+6. Open the Virtual Machine Manager app from the application tray, an option titled
+“QEMU/KVM” should appear.

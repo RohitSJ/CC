@@ -1,0 +1,86 @@
+ScientificCalculatorController.apxc
+
+public class ScientificCalculatorController {
+    // Variables to store operands and result
+    public String operand1 { get; set; }
+    public String operand2 { get; set; }
+    public String result { get; set; }
+    
+    // Method to perform addition
+    public void add() {
+        result = String.valueOf(Double.valueOf(operand1) + Double.valueOf(operand2));
+    }
+    
+    // Method to perform subtraction
+    public void subtract() {
+        result = String.valueOf(Double.valueOf(operand1) - Double.valueOf(operand2));
+    }
+    
+    // Method to perform multiplication
+    public void multiply() {
+        result = String.valueOf(Double.valueOf(operand1) * Double.valueOf(operand2));
+    }
+    
+    // Method to perform division
+    public void divide() {
+        if (Double.valueOf(operand2) != 0) {
+            result = String.valueOf(Double.valueOf(operand1) / Double.valueOf(operand2));
+        } else {
+            result = 'Error: Division by zero';
+        }
+    }
+    
+    // Method to calculate sine
+    public void sine() {
+        result = String.valueOf(Math.sin(Double.valueOf(operand1)));
+    }
+    
+    // Method to calculate cosine
+    public void cosine() {
+        result = String.valueOf(Math.cos(Double.valueOf(operand1)));
+    }
+    
+    // Method to calculate square root
+    public void squareRoot() {
+        result = String.valueOf(Math.sqrt(Double.valueOf(operand1)));
+    }
+}
+
+================================================
+ScientificCalculatorController.vfp
+
+<apex:page controller="ScientificCalculatorController">
+    <style>
+        .center-align {
+            margin: 0 auto;
+            width: 50%; /* You can adjust the width as needed */
+        }
+    </style>
+
+    <div class="center-align">
+    <apex:form >
+        <apex:pageBlock title="Input Number(s)">
+        <apex:pageMessages />
+        <apex:pageBlockSection >
+        <!-- Input fields for operands -->
+        Operand 1: <apex:inputText value="{!operand1}"/><br/>
+        Operand 2: <apex:inputText value="{!operand2}"/><br/><br/>
+        </apex:pageBlockSection>
+        </apex:pageBlock>
+        
+        <!-- Buttons to perform operations -->
+        <apex:commandButton value="Add" action="{!add}"/>
+        <apex:commandButton value="Subtract" action="{!subtract}"/>
+        <apex:commandButton value="Multiply" action="{!multiply}"/>
+        <apex:commandButton value="Divide" action="{!divide}"/><br/><br/>
+        
+        <!-- Buttons for scientific functions -->
+        <apex:commandButton value="Sine" action="{!sine}"/>
+        <apex:commandButton value="Cosine" action="{!cosine}"/>
+        <apex:commandButton value="Square Root" action="{!squareRoot}"/><br/><br/>
+        
+        <!-- Display result -->
+        Result: <apex:outputText value="{!result}"/>
+    </apex:form>
+    </div>
+</apex:page>
